@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:tns="http://capture-info.commons.glookast.com"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:base="http://base.commons.glookast.com"
+           xmlns:timecode="http://timecode.commons.glookast.com"
+           version="1.0"
+           targetNamespace="http://capture-info.commons.glookast.com">
+    <xs:import namespace="http://base.commons.glookast.com" schemaLocation="../base/base.xsd"/>
+    <xs:import namespace="http://timecode.commons.glookast.com" schemaLocation="../timecode/timecode.xsd"/>
+
+    <xs:simpleType name="BufferFieldOrder">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="UNKNOWN"/>
+            <xs:enumeration value="LOWER_FIELD_FIRST"/>
+            <xs:enumeration value="UPPER_FIELD_FIRST"/>
+            <xs:enumeration value="PROGRESSIVE_FRAME"/>
+            <xs:enumeration value="PROGRESSIVE_SEGMENTED_FRAME"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="PixelFormat">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="UNKNOWN"/>
+            <xs:enumeration value="UYVY"/>
+            <xs:enumeration value="V210"/>
+            <xs:enumeration value="RGB24"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="PictureFormat">
+        <xs:sequence>
+            <xs:element name="width" type="xs:int" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="height" type="xs:int" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="pixelFormat" type="tns:PixelFormat" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="bufferFieldOrder" type="tns:BufferFieldOrder" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="aspectRatio" type="base:Rational" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SoundFormat">
+        <xs:sequence>
+            <xs:element name="channelCount" type="xs:int" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="sampleSize" type="xs:int" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="samplingRate" type="xs:int" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SignalFormat">
+        <xs:sequence>
+            <xs:element name="frameRate" type="base:Rational" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="picture" type="tns:PictureFormat" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="sound" type="tns:SoundFormat" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TimecodeCollection">
+        <xs:sequence>
+            <xs:element name="ltc" type="timecode:Timecode" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="vitc" type="timecode:Timecode" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="tod" type="timecode:Timecode" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="rs422" type="timecode:Timecode" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:simpleType name="TransferJobStatus">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="STARTING"/>
+            <xs:enumeration value="RUNNING"/>
+            <xs:enumeration value="PAUSED"/>
+            <xs:enumeration value="FAILED"/>
+            <xs:enumeration value="ABORTED"/>
+            <xs:enumeration value="FINISHED"/>
+            <xs:enumeration value="IDLE"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="TransferJob">
+        <xs:sequence>
+            <xs:element name="id" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="captureJobId" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="status" type="tns:TransferJobStatus" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="progress" type="xs:double" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="message" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="transformProfileId" type="base:UUID" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="outputSystemId" type="base:UUID" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
