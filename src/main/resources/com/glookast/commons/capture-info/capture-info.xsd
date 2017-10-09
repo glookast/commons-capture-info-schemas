@@ -27,6 +27,16 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <xs:simpleType name="SignalReferenceStatus">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NO_REFERENCE"/>
+            <xs:enumeration value="WRONG_REFERENCE"/>
+            <xs:enumeration value="REFERENCE_UNLOCKED"/>
+            <xs:enumeration value="REFERENCE_OK"/>
+            <xs:enumeration value="REFERENCE_UNKNOWN"/>
+        </xs:restriction>
+    </xs:simpleType>
+
     <xs:complexType name="PictureFormat">
         <xs:sequence>
             <xs:element name="width" type="xs:int" minOccurs="1" maxOccurs="1"/>
