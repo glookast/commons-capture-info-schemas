@@ -25,7 +25,7 @@
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:simpleType name="SignalReferenceStatus">
+    <xs:simpleType name="ReferenceSignalStatus">
         <xs:restriction base="xs:string">
             <xs:enumeration value="NO_REFERENCE"/>
             <xs:enumeration value="WRONG_REFERENCE"/>
