@@ -2,11 +2,9 @@
 <xs:schema xmlns:tns="http://capture-info.commons.glookast.com"
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns:base="http://base.commons.glookast.com"
-           xmlns:timecode="http://timecode.commons.glookast.com"
            version="1.0"
            targetNamespace="http://capture-info.commons.glookast.com">
     <xs:import namespace="http://base.commons.glookast.com" schemaLocation="../base/base.xsd"/>
-    <xs:import namespace="http://timecode.commons.glookast.com" schemaLocation="../timecode/timecode.xsd"/>
 
     <xs:simpleType name="BufferFieldOrder">
         <xs:restriction base="xs:string">
@@ -27,7 +25,7 @@
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:simpleType name="SignalReferenceStatus">
+    <xs:simpleType name="ReferenceSignalStatus">
         <xs:restriction base="xs:string">
             <xs:enumeration value="NO_REFERENCE"/>
             <xs:enumeration value="WRONG_REFERENCE"/>
@@ -62,16 +60,6 @@
             <xs:element name="sound" type="tns:SoundFormat" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
-
-    <xs:complexType name="TimecodeCollection">
-        <xs:sequence>
-            <xs:element name="ltc" type="timecode:Timecode" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="vitc" type="timecode:Timecode" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="tod" type="timecode:Timecode" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="rs422" type="timecode:Timecode" minOccurs="0" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-
 
     <xs:simpleType name="TransferJobStatus">
         <xs:restriction base="xs:string">
