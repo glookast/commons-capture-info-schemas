@@ -4,7 +4,7 @@
            xmlns:base="http://base.commons.glookast.com"
            version="1.0"
            targetNamespace="http://info.capture.commons.glookast.com">
-    <xs:import namespace="http://base.commons.glookast.com" schemaLocation="../base/base.xsd"/>
+    <xs:import namespace="http://base.commons.glookast.com" schemaLocation="../../base/base.xsd"/>
 
     <xs:simpleType name="BufferFieldOrder">
         <xs:restriction base="xs:string">
