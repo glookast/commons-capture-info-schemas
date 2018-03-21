@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:tns="http://capture-info.commons.glookast.com"
+<xs:schema xmlns:tns="http://info.capture.commons.glookast.com"
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns:base="http://base.commons.glookast.com"
            version="1.0"
-           targetNamespace="http://capture-info.commons.glookast.com">
-    <xs:import namespace="http://base.commons.glookast.com" schemaLocation="../base/base.xsd"/>
+           targetNamespace="http://info.capture.commons.glookast.com">
+    <xs:import namespace="http://base.commons.glookast.com" schemaLocation="../../base/base.xsd"/>
 
     <xs:simpleType name="BufferFieldOrder">
         <xs:restriction base="xs:string">
