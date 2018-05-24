@@ -2,9 +2,11 @@
 <xs:schema xmlns:tns="http://info.capture.commons.glookast.com"
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns:base="http://base.commons.glookast.com"
+           xmlns:time="http://timecode.commons.glookast.com"
            version="1.0"
            targetNamespace="http://info.capture.commons.glookast.com">
     <xs:import namespace="http://base.commons.glookast.com" schemaLocation="../../base/base.xsd"/>
+    <xs:import namespace="http://timecode.commons.glookast.com" schemaLocation="../../timecode/timecode.xsd"/>
 
     <xs:simpleType name="BufferFieldOrder">
         <xs:restriction base="xs:string">
@@ -34,6 +36,28 @@
             <xs:enumeration value="REFERENCE_UNKNOWN"/>
         </xs:restriction>
     </xs:simpleType>
+
+    <xs:simpleType name="LocatorColor">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="RED"/>
+            <xs:enumeration value="GREEN"/>
+            <xs:enumeration value="BLUE"/>
+            <xs:enumeration value="CYAN"/>
+            <xs:enumeration value="MAGENTA"/>
+            <xs:enumeration value="YELLOW"/>
+            <xs:enumeration value="BLACK"/>
+            <xs:enumeration value="WHITE"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="Locator">
+        <xs:sequence>
+            <xs:element name="timecode" type="time:Timecode" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="color" type="tns:LocatorColor" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="message" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="notes" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
 
     <xs:complexType name="PictureFormat">
         <xs:sequence>
